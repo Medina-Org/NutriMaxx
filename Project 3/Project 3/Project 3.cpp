@@ -253,6 +253,7 @@ int main() {
                         }
                         else if (button3.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
                             commenceSort = true;
+                            cout << "applying the sort" << endl;
                         }
                         else {
                             // select one of the nutrientNames
@@ -266,15 +267,14 @@ int main() {
                                 for (int i = 0; i < nameRects.size(); ++i) {
                                     if (nameRects[i].getGlobalBounds().contains(viewPos)) {
                                         if (nameRects[i].getFillColor() == sf::Color::White) {
+                                            // loop through all name rects and set fill color to white
+                                            for (int j = 0; j < nameRects.size(); j++) {
+                                                nameRects[j].setFillColor(sf::Color::White);
+                                            }
                                             nameRects[i].setFillColor(sf::Color::Color(200, 200, 200, 255));
                                             subtitle.setString(nutrientNames[i]);
                                             for (int j = 0; j < 5; ++j) {
                                                 sortNutrientVals[j].setString(to_string(foodList.foodList[j].nutrients[i]));
-                                            }
-                                            // loop through all name rects and set fill color to white
-                                            for (int j = 0; j < nameRects.size(); j++) {
-                                                if (j == i) continue;
-                                                nameRects[j].setFillColor(sf::Color::White);
                                             }
                                             selectedNutrient = true;
                                             cout << nutrientNames[i] << endl;
@@ -302,14 +302,7 @@ int main() {
             }
         }
         window.clear(sf::Color::Color(150, 150, 150, 255));
-
-        // Draw the scrollable rectangles and text
-        window.setView(view);
-        for (int i = 0; i < nutrientNames.size(); ++i) {
-            window.draw(nameRects[i]);
-            window.draw(textnutrientNames[i]);
-        }
-        // Draw everything else to the screen
+        // Draw everything to the screen
         window.setView(window.getDefaultView());
         window.draw(button1);
         window.draw(button1Text);
@@ -332,6 +325,13 @@ int main() {
         }
         window.draw(button3);
         window.draw(button3Text);
+
+        // Draw the scrollable rectangles and text
+        window.setView(view);
+        for (int i = 0; i < nutrientNames.size(); ++i) {
+            window.draw(nameRects[i]);
+            window.draw(textnutrientNames[i]);
+        }
         window.display();
 
         if (commenceSort) {
@@ -345,7 +345,7 @@ int main() {
             button2.setFillColor(sf::Color::Color(100, 100, 100, 255));
             for (int j = 0; j < nameRects.size(); j++) {
                 nameRects[j].setFillColor(sf::Color::White);
-            }
+            } 
 
             button3Text.setString("Apply");
             sf::Vector2f button3Pos = button3.getPosition();
