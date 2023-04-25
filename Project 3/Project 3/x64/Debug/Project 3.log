@@ -1,0 +1,38 @@
+﻿  Project 3.cpp
+C:\Users\Alen\Documents\GitHub\Project-3\Project 3\Project 3\Project 3.cpp(107,90): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Alen\Documents\GitHub\Project-3\Project 3\Project 3\Project 3.cpp(107,73): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Alen\Documents\GitHub\Project-3\Project 3\Project 3\Project 3.cpp(110,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Alen\Documents\GitHub\Project-3\Project 3\Project 3\Project 3.cpp(110,78): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+  Project 3.vcxproj -> C:\Users\Alen\Documents\GitHub\Project-3\Project 3\x64\Debug\Project 3.exe
