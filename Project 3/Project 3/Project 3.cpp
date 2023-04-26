@@ -55,15 +55,7 @@ int main() {
     getline(file, line);
     vector<string> nutrientNames = split(line, ',');
     nutrientNames.erase(nutrientNames.begin(), nutrientNames.begin()+3);
-    map<string, int> nutrientKey;
-    int iter = 0;
-    // iterates through nutrientNames vector and adds each nutrient to the map
-    for (int i = 0; i < nutrientNames.size(); i++) {
-        size_t last_period_pos = nutrientNames[i].find_last_of('.');
-        nutrientNames[i] = nutrientNames[i].substr(last_period_pos + 1);
-		nutrientKey[nutrientNames[i]] = iter;
-        iter++;
-	}
+  
 
     int index = 0;
     // Reads entire file
@@ -105,6 +97,11 @@ int main() {
                 foodList.foodList[index].nutrients[i] = stod(parsedLine[i + 3]);
                 i++;
             }
+        }
+
+        // Limits name length
+        if (foodList.foodList[index].name.size() > 30) {
+            foodList.foodList[index].name.resize(30);
         }
         index++;
     }
