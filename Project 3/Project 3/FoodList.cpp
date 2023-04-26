@@ -101,6 +101,27 @@ void FoodList::mergeSortFoodList(int nutrientIndex)
     timeStopAndDisplay("merge");
 }
 
+// Function to sort the foodList array in descending order according to given nutrient index
+void FoodList::shellSortFoodList(int nutrientIndex) {
+    timeStart();
+    int n = 7078; // size of the foodList array
+
+    // Calculate gap for shell sort
+    for (int gap = n / 2; gap > 0; gap /= 2)
+    {
+        for (int i = gap; i < n; i++)
+        {
+            Food temp = foodList[i];
+            int j;
+            for (j = i; j >= gap && foodList[j - gap].nutrients[nutrientIndex] < temp.nutrients[nutrientIndex]; j -= gap)
+            {
+                foodList[j] = foodList[j - gap];
+            }
+            foodList[j] = temp;
+        }
+    }
+    timeStopAndDisplay("shell");
+}
 
 //	Starts the timer
 void FoodList::timeStart() {

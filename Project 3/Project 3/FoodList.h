@@ -37,10 +37,13 @@ public:
 	FoodList();
 	~FoodList();
 
-	// Sorting
+	// Merge Sorting
 	void merge(Food* arr, int left, int mid, int right, int nutrientIndex);
 	void mergeSort(Food* arr, int left, int right, int nutrientIndex);
 	void mergeSortFoodList(int nutrientIndex);
+
+	// Shell Sorting
+	void shellSortFoodList(int nutrientIndex);
 
 	//	Timer Functions
 	void timeStart();	//	Starts timer

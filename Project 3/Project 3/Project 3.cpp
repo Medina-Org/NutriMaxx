@@ -356,7 +356,7 @@ int main() {
                 shellTime.setString("Time:" + foodList.mergeSortTime);
 			}
 			else {
-                //foodList.shellSortFoodList(searchNutrientIndex);
+                foodList.shellSortFoodList(searchNutrientIndex); //GUI
                 mergeTime.setString("Time:" + foodList.shellSortTime);
             }
 
