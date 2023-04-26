@@ -21,17 +21,11 @@
     <ClCompile Include="Project 3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sorter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FoodList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sorter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FoodList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
