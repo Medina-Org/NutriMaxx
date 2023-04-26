@@ -28,7 +28,7 @@ void centerText(sf::Text& text, sf::RectangleShape& box) {
 }
 
 int main() {
-
+    
     // Open the CSV file for reading
     ifstream file("assets/food.csv");
     if (!file.is_open()) {
@@ -112,7 +112,14 @@ int main() {
     // close the csv file
     file.close();
 
+    //////////////TESTING MERGESORT //////////////////
+    
+    foodList.sortFoodList(0);
+    cout << foodList.foodList[0].name << endl;
+    cout << foodList.foodList[0].nutrients[0] << endl;
 
+    cout << foodList.foodList[1].name << endl;
+    cout << foodList.foodList[1].nutrients[0] << endl;
 
     ///////////////// GUI /////////////////
     bool selectedSort = false;

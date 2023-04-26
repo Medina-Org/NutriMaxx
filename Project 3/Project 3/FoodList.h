@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <chrono>
+#include <thread>
 using namespace std;
+using namespace chrono;
 
 class FoodList
 {
@@ -20,7 +23,14 @@ public:
 	};
 
 	// Variables
-	Food* foodList = new Food[7078];
+	Food* foodList = new Food[7078];	//	Food array containing all the foods in the CSV file
+	//Food* foodListSorted = new Food[7078];	//	Food array but sorted
+	//FIX, make foodlist into sorted and unsorted
+
+	steady_clock::time_point start;		//	Timer variable holding start time
+	steady_clock::time_point end;		//	Timer variable holding end time
+	string shellSortTime;				//	String holding shell sorting time
+	string mergeSortTime;				//	String holding mergeSorting time
 
 	// Functions
 
@@ -28,5 +38,11 @@ public:
 	~FoodList();
 
 	// Sorting
+	void merge(Food* arr, int left, int mid, int right, int nutrientIndex);
+	void mergeSort(Food* arr, int left, int right, int nutrientIndex);
+	void sortFoodList(int nutrientIndex);
 
+	//	Timer Functions
+	void timeStart();	//	Starts timer
+	void timeStopAndDisplay(string sortType);	//	Ends timer and displays time
 };
