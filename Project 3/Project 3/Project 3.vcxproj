@@ -135,11 +135,9 @@
   <ItemGroup>
     <ClCompile Include="FoodList.cpp" />
     <ClCompile Include="Project 3.cpp" />
-    <ClCompile Include="Sorter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoodList.h" />
-    <ClInclude Include="Sorter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\food.csv" />
