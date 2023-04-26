@@ -110,8 +110,6 @@ int main() {
     cout << foodList.foodList[0].name << endl;
     cout << foodList.foodList[0].nutrients[0] << endl;
 
-    cout << foodList.foodList[1].name << endl;
-    cout << foodList.foodList[1].nutrients[0] << endl;
 
     ///////////////// GUI /////////////////
     bool selectedSort = false;
@@ -285,7 +283,7 @@ int main() {
                                             }
                                             selectedNutrient = true;
                                             cout << nutrientNames[i] << endl;
-
+                                            
                                             /// TODO: nutrient to sort by to index i
 
                                         }

@@ -96,7 +96,9 @@ void FoodList::mergeSort(Food* arr, int left, int right, int nutrientIndex)
 // Function to sort foodList array in descending order based on given nutrient index
 void FoodList::sortFoodList(int nutrientIndex)
 {
+    timeStart();
     mergeSort(foodList, 0, 7077, nutrientIndex);
+    timeStopAndDisplay("merge");
 }
 
 

@@ -29,8 +29,8 @@ public:
 
 	steady_clock::time_point start;		//	Timer variable holding start time
 	steady_clock::time_point end;		//	Timer variable holding end time
-	string shellSortTime;				//	String holding shell sorting time
-	string mergeSortTime;				//	String holding mergeSorting time
+	string shellSortTime = "0";				//	String holding shell sorting time
+	string mergeSortTime = "0";				//	String holding mergeSorting time
 
 	// Functions
 
