@@ -94,7 +94,7 @@ void FoodList::mergeSort(Food* arr, int left, int right, int nutrientIndex)
 }
 
 // Function to sort foodList array in descending order based on given nutrient index
-void FoodList::sortFoodList(int nutrientIndex)
+void FoodList::mergeSortFoodList(int nutrientIndex)
 {
     timeStart();
     mergeSort(foodList, 0, 7077, nutrientIndex);
@@ -119,14 +119,14 @@ void FoodList::timeStopAndDisplay(string sortType){
 
 	//	Saves the sort time of each sorting algorithm as string
 	if (sortType == "shell") {
-		shellSortTime = elapsed_seconds.count();
+		shellSortTime = to_string(elapsed_seconds.count());
 	}
 	else if (sortType == "merge") {
-		mergeSortTime = elapsed_seconds.count();
+		mergeSortTime = to_string(elapsed_seconds.count());
 	}
 
 	//	Output the elapsed time
-	cout << "Elapsed time: " << elapsed_seconds.count() << " seconds" << endl;
+	cout << "Elapsed time: " << elapsed_seconds.count() << " seconds" << endl; // DEBUG
 }
 
 

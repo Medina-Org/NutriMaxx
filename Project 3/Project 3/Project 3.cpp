@@ -114,15 +114,17 @@ int main() {
 
     //////////////TESTING MERGESORT //////////////////
     
-    foodList.sortFoodList(0);
-    cout << foodList.foodList[0].name << endl;
-    cout << foodList.foodList[0].nutrients[0] << endl;
+    foodList.mergeSortFoodList(1);
+    //cout << foodList.foodList[0].name << endl;
+    //cout << foodList.foodList[0].nutrients[0] << endl;
 
 
     ///////////////// GUI /////////////////
+    int searchNutrientIndex = 0;
     bool selectedSort = false;
     bool selectedNutrient = false;
     bool commenceSort = false;
+    bool doMergeSort = true;
 
     // Create shell sort button
     sf::RectangleShape button1(sf::Vector2f(150.f, 50.f));
@@ -255,8 +257,7 @@ int main() {
                             button2.setFillColor(sf::Color::Color(100, 100, 100, 255));
                             selectedSort = true;
                             cout << "Shell Sort" << endl;
-
-                            /// TODO: Update sorting scheme to shell sort here
+                            doMergeSort = false;
 
                         }
                         // select merge sort
@@ -265,8 +266,7 @@ int main() {
                             button2.setFillColor(sf::Color::Color(255, 165, 0, 255));
                             selectedSort = true;
                             cout << "Merge Sort" << endl;
-
-                            /// TODO: Update sorting scheme to merge sort here
+                            doMergeSort = true;
 
                         }
                         else if (button3.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
@@ -297,9 +297,7 @@ int main() {
                                             }
                                             selectedNutrient = true;
                                             cout << nutrientNames[i] << endl;
-                                            
-                                            /// TODO: nutrient to sort by to index i
-
+                                            searchNutrientIndex = i;
                                         }
                                         else {
                                             nameRects[i].setFillColor(sf::Color::White);
@@ -353,14 +351,21 @@ int main() {
         window.display();
 
         if (commenceSort) {
+            if (doMergeSort) {
+				foodList.mergeSortFoodList(searchNutrientIndex);
+                shellTime.setString("Time:" + foodList.mergeSortTime);
+			}
+			else {
+                //foodList.shellSortFoodList(searchNutrientIndex);
+                mergeTime.setString("Time:" + foodList.shellSortTime);
+            }
 
-            /// TODO: CALL SORT HERE
-            double mergeTimeVal = 0.0;
-            double shellTimeVal = 0.0;
 
+            for (int i = 0; i < 5; ++i) {
+                sortNames[i].setString(foodList.foodList[i].name);
+                sortNutrientVals[i].setString(to_string(foodList.foodList[i].nutrients[searchNutrientIndex]));
+            }
 
-            mergeTime.setString("Time:" + to_string(mergeTimeVal));
-            shellTime.setString("Time:" + to_string(shellTimeVal));
             timeBox.setPosition(25.f, 100.f);
             centerText(mergeTime, timeBox);
             timeBox.setPosition(200.f, 100.f);
