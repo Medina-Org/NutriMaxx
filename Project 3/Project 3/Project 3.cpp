@@ -3,6 +3,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <iomanip>
 #include <SFML/Graphics.hpp>
 #include <map>
 #include "FoodList.h"
@@ -17,6 +18,13 @@ vector<string> split(const string& s, char delimiter) {
         tokens.push_back(token);
     }
     return tokens;
+}
+
+void centerText(sf::Text& text, sf::RectangleShape& box) {
+    sf::Vector2f boxPos = box.getPosition();
+    sf::Vector2f textPos(boxPos.x + box.getSize().x / 2.f - text.getLocalBounds().width / 2.f,
+        boxPos.y + box.getSize().y / 2.f - text.getLocalBounds().height / 1.5f);
+    text.setPosition(textPos);
 }
 
 int main() {
@@ -117,10 +125,7 @@ int main() {
     button1.setFillColor(sf::Color::Color(100, 100, 100, 255));
     sf::Text button1Text("Shell Sort", font, 20);
     button1Text.setFillColor(sf::Color::White);
-    sf::Vector2f button1Pos = button1.getPosition();
-    sf::Vector2f button1TextPos(button1Pos.x + button1.getSize().x / 2.f - button1Text.getLocalBounds().width / 2.f,
-        button1Pos.y + button1.getSize().y / 2.f - button1Text.getLocalBounds().height / 2.f);
-    button1Text.setPosition(button1TextPos);
+    centerText(button1Text, button1);
 
     // create merge sort button
     sf::RectangleShape button2(sf::Vector2f(150.f, 50.f));
@@ -128,10 +133,7 @@ int main() {
     button2.setFillColor(sf::Color::Color(100, 100, 100, 255));
     sf::Text button2Text("Merge Sort", font, 20);
     button2Text.setFillColor(sf::Color::White);
-    sf::Vector2f button2Pos = button2.getPosition();
-    sf::Vector2f button2TextPos(button2Pos.x + button2.getSize().x / 2.f - button2Text.getLocalBounds().width / 2.f,
-        		button2Pos.y + button2.getSize().y / 2.f - button2Text.getLocalBounds().height / 2.f);
-    button2Text.setPosition(button2TextPos);
+    centerText(button2Text, button2);
 
     // create apply button
     sf::RectangleShape button3(sf::Vector2f(150.f, 50.f));
@@ -139,34 +141,42 @@ int main() {
     button3.setFillColor(sf::Color::Color(100, 100, 100, 255));
     sf::Text button3Text("Apply", font, 20);
     button3Text.setFillColor(sf::Color::White);
-    sf::Vector2f button3Pos = button3.getPosition();
-    sf::Vector2f button3TextPos(button3Pos.x + button3.getSize().x / 2.f - button3Text.getLocalBounds().width / 2.f,
-        				button3Pos.y + button3.getSize().y / 2.f - button3Text.getLocalBounds().height / 2.f);
-    button3Text.setPosition(button3TextPos);
+    centerText(button3Text, button3);
 
+    // create time text
+    sf::Text mergeTime("Time: --", font, 20);
+    mergeTime.setFillColor(sf::Color::Black);
+    sf::RectangleShape timeBox(sf::Vector2f(150.f, 50.f));
+    timeBox.setPosition(25.f, 100.f);
+    centerText(mergeTime, timeBox);
+    sf::Text shellTime("Time: --", font, 20);
+    shellTime.setFillColor(sf::Color::Black);
+    timeBox.setPosition(200.f, 100.f);
+    centerText(shellTime, timeBox);
 
-    // convert the nutrientNames into a list of sf::Text objects
+    // create nutrient menu
     vector<sf::Text> textnutrientNames;
-    for (int i = 0; i < nutrientNames.size(); ++i) {
-        sf::Text name;
-        name.setFont(font);
-        name.setCharacterSize(24);
-        name.setFillColor(sf::Color::Black);
-        name.setString(nutrientNames[i]);
-        name.setPosition(400.f, 50.f + (i * 30));
-        textnutrientNames.push_back(name);
-    }
-
-    // create rectanglular frame for each nutrient name
     vector<sf::RectangleShape> nameRects;
     for (int i = 0; i < nutrientNames.size(); ++i) {
+        // create rectanglular frame for each nutrient name
         sf::RectangleShape rect(sf::Vector2f(300.f, 30.f));
         rect.setPosition(400.f, 50.f + (i * 30));
         rect.setFillColor(sf::Color::White);
         rect.setOutlineColor(sf::Color::Black);
         rect.setOutlineThickness(1.f);
         nameRects.push_back(rect);
+        // convert the nutrientNames into a list of sf::Text objects
+        sf::Text name;
+        name.setFont(font);
+        name.setCharacterSize(24);
+        name.setFillColor(sf::Color::Black);
+        name.setString(nutrientNames[i]);
+        centerText(name, rect);
+        textnutrientNames.push_back(name);
     }
+
+    // helper rectangle to center text in a rectangle
+    sf::RectangleShape temp(sf::Vector2f(300.f, 50.f));
 
     // make ten textboxes in the bottom of the window
     vector<sf::RectangleShape> sortRects;
@@ -194,17 +204,20 @@ int main() {
         nutrientVals.setCharacterSize(24);
         nutrientVals.setFillColor(sf::Color::Black);
         nutrientVals.setString(to_string(foodList.foodList[i].nutrients[1]));
-        nutrientVals.setPosition(500.f, 350.f + (i * 50));
+        temp.setPosition(400.f, 350.f + (i * 50));
+        centerText(nutrientVals, temp);
         sortNutrientVals.push_back(nutrientVals);
     }
 
     // create a subtitle
+    sf::RectangleShape subtitleBox(sf::Vector2f(200.f, 50.f));
+    subtitleBox.setPosition(450.f, 300.f);
     sf::Text subtitle;
     subtitle.setFont(font);
     subtitle.setCharacterSize(30);
     subtitle.setFillColor(sf::Color::Black);
     subtitle.setString(nutrientNames[1]);
-    subtitle.setPosition(450.f, 300.f);
+    centerText(subtitle, subtitleBox);
 
 
     // create a scrollable view for the nutrient names rectangles
@@ -273,6 +286,7 @@ int main() {
                                             }
                                             nameRects[i].setFillColor(sf::Color::Color(200, 200, 200, 255));
                                             subtitle.setString(nutrientNames[i]);
+                                            centerText(subtitle, subtitleBox);
                                             for (int j = 0; j < 5; ++j) {
                                                 sortNutrientVals[j].setString(to_string(foodList.foodList[j].nutrients[i]));
                                             }
@@ -308,6 +322,8 @@ int main() {
         window.draw(button1Text);
         window.draw(button2);
         window.draw(button2Text);
+        window.draw(mergeTime);
+        window.draw(shellTime);
         window.draw(subtitle);
         for (int i = 0; i < 5; ++i) {
             window.draw(sortRects[i]);
@@ -318,10 +334,7 @@ int main() {
         if (commenceSort) {
             button3.setFillColor(sf::Color::Color(100, 100, 100, 255));
             button3Text.setString("Loading...");
-            sf::Vector2f button3Pos = button3.getPosition();
-            sf::Vector2f button3TextPos(button3Pos.x + button3.getSize().x / 2.f - button3Text.getLocalBounds().width / 2.f,
-                button3Pos.y + button3.getSize().y / 2.f - button3Text.getLocalBounds().height / 2.f);
-            button3Text.setPosition(button3TextPos);
+            centerText(button3Text, button3);
         }
         window.draw(button3);
         window.draw(button3Text);
@@ -337,7 +350,16 @@ int main() {
         if (commenceSort) {
 
             /// TODO: CALL SORT HERE
+            double mergeTimeVal = 0.0;
+            double shellTimeVal = 0.0;
 
+
+            mergeTime.setString("Time:" + to_string(mergeTimeVal));
+            shellTime.setString("Time:" + to_string(shellTimeVal));
+            timeBox.setPosition(25.f, 100.f);
+            centerText(mergeTime, timeBox);
+            timeBox.setPosition(200.f, 100.f);
+            centerText(shellTime, timeBox);
             commenceSort = false;
             selectedNutrient = false;
             selectedSort = false;
@@ -348,11 +370,7 @@ int main() {
             } 
 
             button3Text.setString("Apply");
-            sf::Vector2f button3Pos = button3.getPosition();
-            sf::Vector2f button3TextPos(button3Pos.x + button3.getSize().x / 2.f - button3Text.getLocalBounds().width / 2.f,
-                button3Pos.y + button3.getSize().y / 2.f - button3Text.getLocalBounds().height / 2.f);
-            button3Text.setPosition(button3TextPos);
-
+            centerText(button3Text, button3);
         }
     }
 
