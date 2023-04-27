@@ -17,16 +17,14 @@ public:
 		string category;
 		string name;
 		int id;
-		double nutrients[35];
+		double nutrients[35];	//	Array holding all nutrient values
 
 		Food();
 	};
 
 	// Variables
 	Food* foodList = new Food[7078];	//	Food array containing all the foods in the CSV file
-	//Food* foodListSorted = new Food[7078];	//	Food array but sorted
-	//FIX, make foodlist into sorted and unsorted
-
+	
 	steady_clock::time_point start;		//	Timer variable holding start time
 	steady_clock::time_point end;		//	Timer variable holding end time
 	string shellSortTime = "0";				//	String holding shell sorting time

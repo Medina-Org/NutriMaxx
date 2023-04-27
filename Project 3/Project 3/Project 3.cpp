@@ -10,22 +10,12 @@
 using namespace std;
 
 // Function to split a string into tokens based on a delimiter
-vector<string> split(const string& s, char delimiter) {
-    vector<string> tokens;
-    istringstream ss(s);
-    string token;
-    while (getline(ss, token, delimiter)) {
-        tokens.push_back(token);
-    }
-    return tokens;
-}
+vector<string> split(const string& s, char delimiter);
+//  Centers text in the textbox
+void centerText(sf::Text& text, sf::RectangleShape& box);
+//  Returns the unit according to given nutrient index
+string unitDisplay(int n);
 
-void centerText(sf::Text& text, sf::RectangleShape& box) {
-    sf::Vector2f boxPos = box.getPosition();
-    sf::Vector2f textPos(boxPos.x + box.getSize().x / 2.f - text.getLocalBounds().width / 2.f,
-        boxPos.y + box.getSize().y / 2.f - text.getLocalBounds().height / 1.5f);
-    text.setPosition(textPos);
-}
 
 int main() {
     
@@ -99,7 +89,7 @@ int main() {
             }
         }
 
-        // Limits name length
+        // Limits name length to not overflow
         if (foodList.foodList[index].name.size() > 30) {
             foodList.foodList[index].name.resize(30);
         }
@@ -108,12 +98,6 @@ int main() {
 
     // close the csv file
     file.close();
-
-    //////////////TESTING MERGESORT //////////////////
-    
-    foodList.mergeSortFoodList(1);
-    //cout << foodList.foodList[0].name << endl;
-    //cout << foodList.foodList[0].nutrients[0] << endl;
 
 
     ///////////////// GUI /////////////////
@@ -179,22 +163,22 @@ int main() {
         textnutrientNames.push_back(name);
     }
 
-    // helper rectangle to center text in a rectangle
+    // Helper rectangle to center text in a rectangle
     sf::RectangleShape temp(sf::Vector2f(300.f, 50.f));
 
-    // make ten textboxes in the bottom of the window
+    // Make ten textboxes in the bottom of the window
     vector<sf::RectangleShape> sortRects;
     vector<sf::Text> sortNames;
     vector<sf::Text> sortNutrientVals;
     for (int i = 0; i < 5; ++i) {
-        // make a rectangle for each textbox
+        // Make a rectangle for each textbox
         sf::RectangleShape rect(sf::Vector2f(600.f, 50.f));
         rect.setPosition(100.f, 350.f + (i * 50));
         rect.setFillColor(sf::Color::White);
         rect.setOutlineColor(sf::Color::Black);
         rect.setOutlineThickness(1.f);
         sortRects.push_back(rect);
-        // make the text
+        // Make the text
         sf::Text name;
         name.setFont(font);
         name.setCharacterSize(24);
@@ -202,7 +186,7 @@ int main() {
         name.setString(foodList.foodList[i].name);
         name.setPosition(100.f, 350.f + (i * 50));
         sortNames.push_back(name);
-        // make the nutrient values
+        // Make the nutrient values
         sf::Text nutrientVals;
         nutrientVals.setFont(font);
         nutrientVals.setCharacterSize(24);
@@ -213,7 +197,7 @@ int main() {
         sortNutrientVals.push_back(nutrientVals);
     }
 
-    // create a subtitle
+    // Create a subtitle
     sf::RectangleShape subtitleBox(sf::Vector2f(200.f, 50.f));
     subtitleBox.setPosition(450.f, 300.f);
     sf::Text subtitle;
@@ -224,7 +208,7 @@ int main() {
     centerText(subtitle, subtitleBox);
 
 
-    // create a scrollable view for the nutrient names rectangles
+    // Create a scrollable view for the nutrient names rectangles
     sf::FloatRect viewBounds(400.f, 50.f, 400.f, 250.f);
     sf::View view(viewBounds);
     view.setViewport(sf::FloatRect(0.5f, 0.0625f, 0.5f, 0.416666f));
@@ -239,8 +223,7 @@ int main() {
 
         // Handle events
         sf::Event event;
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)) {
             switch(event.type) {
                 case sf::Event::Closed:
                     window.close();
@@ -349,18 +332,24 @@ int main() {
 
         if (commenceSort) {
             if (doMergeSort) {
+                // Merge sorts the nutrients
 				foodList.mergeSortFoodList(searchNutrientIndex);
+                //  Sets a string with the time merge sort ran for
                 shellTime.setString("Time:" + foodList.mergeSortTime);
 			}
 			else {
-                foodList.shellSortFoodList(searchNutrientIndex); //GUI
+                //  Shell sorts the nutrients
+                foodList.shellSortFoodList(searchNutrientIndex);
+                //  Sets a string with the time shell sort ran for
                 mergeTime.setString("Time:" + foodList.shellSortTime);
             }
 
 
             for (int i = 0; i < 5; ++i) {
+                //  Adds the Food name to an array that will then be displayed
                 sortNames[i].setString(foodList.foodList[i].name);
-                sortNutrientVals[i].setString(to_string(foodList.foodList[i].nutrients[searchNutrientIndex]));
+                //  Adds the Food nutrient content and content unit to an array that will then be displayed
+                sortNutrientVals[i].setString(to_string(foodList.foodList[i].nutrients[searchNutrientIndex]) + unitDisplay(searchNutrientIndex));
             }
 
             timeBox.setPosition(25.f, 100.f);
@@ -382,4 +371,43 @@ int main() {
     }
 
     return 0;
+}
+
+
+
+
+////////////////////////    Helper function definitions   /////////////////////////
+
+// Function to split a string into tokens based on a delimiter
+vector<string> split(const string& s, char delimiter) {
+    vector<string> tokens;
+    istringstream ss(s);
+    string token;
+    while (getline(ss, token, delimiter)) {
+        tokens.push_back(token);
+    }
+    return tokens;
+}
+//  Centers text in the textbox
+void centerText(sf::Text& text, sf::RectangleShape& box) {
+    sf::Vector2f boxPos = box.getPosition();
+    sf::Vector2f textPos(boxPos.x + box.getSize().x / 2.f - text.getLocalBounds().width / 2.f,
+        boxPos.y + box.getSize().y / 2.f - text.getLocalBounds().height / 1.5f);
+    text.setPosition(textPos);
+}
+
+//  Returns the unit according to given nutrient index
+string unitDisplay(int n) {
+    if (n == 0 || n == 1 || n == 2 || n == 7 || n == 8 || n == 11 || n == 13 || n == 29 || n == 30 || n == 34) {
+        return "mcg";
+    }
+    else if (n == 4 || n == 5 || n == 9 || n == 12 || n == 15 || n == 21 || n == 22 || n == 23 || n == 24 || n == 25 || n == 26 || n == 27 || n == 28 || n == 31 || n == 32 || n == 33) {
+        return "mg";
+    }
+    else if (n == 3 || n == 6 || n == 10 || n == 14 || n == 16 || n == 17 || n == 18 || n == 19 || n == 20) {
+        return "g";
+    }
+    else {
+        return "";
+    }
 }
