@@ -134,7 +134,60 @@ void FoodList::timeStopAndDisplay(string sortType) {
 	cout << "Elapsed time: " << elapsed_seconds.count() << " seconds" << endl; // DEBUG
 }
 
+// Function to return unit of given nutrient index
+string FoodList::getUnit(int nutrientIndex) {
+    string unit;
+    switch (nutrientIndex) {
+        // the following cases are for nutrients that are measured in mcg
+        case 0:
+        case 1:
+        case 2:
+        case 7:
+        case 8:
+        case 11:
+        case 13:
+        case 29:
+        case 30:
+        case 34:
+            unit = "mcg";
+            break;
+        // the following cases are for nutrients that are measured in g
+        case 3:
+        case 6:
+        case 10:
+        case 14:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+            unit = "g";
+            break;
+        // the following cases are for nutrients that are measured in mg
+        case 4:
+        case 5:
+        case 9:
+        case 12:
+        case 15:
+        case 21:
+        case 22:
+        case 23:
+        case 24:
+        case 25:
+        case 26:
+        case 27:
+        case 28:
+        case 31:
+        case 32:
+        case 33:
+            unit = "mg";
+            break;
+        default:
+            unit = "";
+    }
 
+    return unit;
+}
 
 
 
