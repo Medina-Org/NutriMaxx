@@ -23,7 +23,6 @@ int main() {
         return 1;
     }
 
-
     string line;
 
     FoodList foodList = FoodList();
