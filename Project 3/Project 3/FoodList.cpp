@@ -6,18 +6,13 @@
 using namespace std;
 using namespace chrono;
 
-FoodList::FoodList()
-{
-}
+FoodList::FoodList(){}
 
-FoodList::~FoodList()
-{
+FoodList::~FoodList(){
     delete[] foodList;
 }
 
-FoodList::Food::Food()
-{
-}
+FoodList::Food::Food(){}
 
 // Merge function to merge two sub-arrays
 void FoodList::merge(Food* arr, int left, int middle, int right, int nutrientIndex)
@@ -40,16 +35,13 @@ void FoodList::merge(Food* arr, int left, int middle, int right, int nutrientInd
     j = 0;
     k = left;
     // Merge the temporary arrays back into arr[]
-    while (i < n1 && j < n2)
-    {
+    while (i < n1 && j < n2) {
         // Compare nutrient values based on given nutrient index
-        if (leftArr[i].nutrients[nutrientIndex] > rightArr[j].nutrients[nutrientIndex])
-        {
+        if (leftArr[i].nutrients[nutrientIndex] > rightArr[j].nutrients[nutrientIndex]) {
             arr[k] = leftArr[i];
             i++;
         }
-        else
-        {
+        else {
             arr[k] = rightArr[j];
             j++;
         }
@@ -57,16 +49,14 @@ void FoodList::merge(Food* arr, int left, int middle, int right, int nutrientInd
     }
 
     // Copy the remaining elements of leftArr[]
-    while (i < n1)
-    {
+    while (i < n1) {
         arr[k] = leftArr[i];
         i++;
         k++;
     }
 
     // Copy the remaining elements of rightArr[]
-    while (j < n2)
-    {
+    while (j < n2) {
         arr[k] = rightArr[j];
         j++;
         k++;
@@ -78,10 +68,8 @@ void FoodList::merge(Food* arr, int left, int middle, int right, int nutrientInd
 }
 
 // Merge Sort function
-void FoodList::mergeSort(Food* arr, int left, int right, int nutrientIndex)
-{
-    if (left < right)
-    {
+void FoodList::mergeSort(Food* arr, int left, int right, int nutrientIndex) {
+    if (left < right) {
         int middle = left + (right - left) / 2;
 
         // Sort left and right halves recursively
@@ -94,8 +82,7 @@ void FoodList::mergeSort(Food* arr, int left, int right, int nutrientIndex)
 }
 
 // Function to sort foodList array in descending order based on given nutrient index
-void FoodList::mergeSortFoodList(int nutrientIndex)
-{
+void FoodList::mergeSortFoodList(int nutrientIndex) {
     timeStart();
     mergeSort(foodList, 0, 7077, nutrientIndex);
     timeStopAndDisplay("merge");
@@ -107,14 +94,11 @@ void FoodList::shellSortFoodList(int nutrientIndex) {
     int n = 7078; // size of the foodList array
 
     // Calculate gap for shell sort
-    for (int gap = n / 2; gap > 0; gap /= 2)
-    {
-        for (int i = gap; i < n; i++)
-        {
+    for (int gap = n / 2; gap > 0; gap /= 2) {
+        for (int i = gap; i < n; i++) {
             Food temp = foodList[i];
             int j;
-            for (j = i; j >= gap && foodList[j - gap].nutrients[nutrientIndex] < temp.nutrients[nutrientIndex]; j -= gap)
-            {
+            for (j = i; j >= gap && foodList[j - gap].nutrients[nutrientIndex] < temp.nutrients[nutrientIndex]; j -= gap) {
                 foodList[j] = foodList[j - gap];
             }
             foodList[j] = temp;
@@ -131,7 +115,7 @@ void FoodList::timeStart() {
 }
 
 //	Ends the timer and displays the time it ran for
-void FoodList::timeStopAndDisplay(string sortType){
+void FoodList::timeStopAndDisplay(string sortType) {
 	//	Record end time
 	end = steady_clock::now();
 	
