@@ -96,7 +96,7 @@ int main() {
         index++;
     }
 
-    // close the csv file
+    // Close the csv file
     file.close();
 
 
@@ -115,7 +115,7 @@ int main() {
     button1Text.setFillColor(sf::Color::White);
     centerText(button1Text, button1);
 
-    // create merge sort button
+    // Create merge sort button
     sf::RectangleShape button2(sf::Vector2f(150.f, 50.f));
     button2.setPosition(200.f, 50.f);
     button2.setFillColor(sf::Color::Color(100, 100, 100, 255));
@@ -123,7 +123,7 @@ int main() {
     button2Text.setFillColor(sf::Color::White);
     centerText(button2Text, button2);
 
-    // create apply button
+    // Create apply button
     sf::RectangleShape button3(sf::Vector2f(150.f, 50.f));
     button3.setPosition(125.f, 200.f);
     button3.setFillColor(sf::Color::Color(100, 100, 100, 255));
@@ -131,7 +131,7 @@ int main() {
     button3Text.setFillColor(sf::Color::White);
     centerText(button3Text, button3);
 
-    // create time text
+    // Create time text
     sf::Text mergeTime("Time: --", font, 20);
     mergeTime.setFillColor(sf::Color::Black);
     sf::RectangleShape timeBox(sf::Vector2f(150.f, 50.f));
@@ -142,18 +142,18 @@ int main() {
     timeBox.setPosition(200.f, 100.f);
     centerText(shellTime, timeBox);
 
-    // create nutrient menu
+    // Create nutrient menu
     vector<sf::Text> textnutrientNames;
     vector<sf::RectangleShape> nameRects;
     for (int i = 0; i < nutrientNames.size(); ++i) {
-        // create rectanglular frame for each nutrient name
+        // Create rectanglular frame for each nutrient name
         sf::RectangleShape rect(sf::Vector2f(300.f, 30.f));
         rect.setPosition(400.f, 50.f + (i * 30));
         rect.setFillColor(sf::Color::White);
         rect.setOutlineColor(sf::Color::Black);
         rect.setOutlineThickness(1.f);
         nameRects.push_back(rect);
-        // convert the nutrientNames into a list of sf::Text objects
+        // Convert the nutrientNames into a list of sf::Text objects
         sf::Text name;
         name.setFont(font);
         name.setCharacterSize(24);
@@ -230,7 +230,7 @@ int main() {
                     break;
                 case sf::Event::MouseButtonPressed:
                     if (event.mouseButton.button == sf::Mouse::Left) {
-                        // select shell sort
+                        // Select shell sort
                         sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
                         if (button1.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
                             button1.setFillColor(sf::Color::Color(255, 165, 0, 255));
@@ -240,7 +240,7 @@ int main() {
                             doMergeSort = false;
 
                         }
-                        // select merge sort
+                        // Select merge sort
                         else if (button2.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
                             button1.setFillColor(sf::Color::Color(100, 100, 100, 255));
                             button2.setFillColor(sf::Color::Color(255, 165, 0, 255));
@@ -254,18 +254,18 @@ int main() {
                             cout << "applying the sort" << endl;
                         }
                         else {
-                            // select one of the nutrientNames
+                            // Select one of the nutrientNames
                             sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-                            // check if mouse is clicking inside view bounds
+                            // Check if mouse is clicking inside view bounds
                             if (viewBounds.contains(mousePosition.x, mousePosition.y)) {
-                                // get the current mouse position in the window
+                                // Get the current mouse position in the window
                                 sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
-                                // convert it to view coordinates
+                                // Convert it to view coordinates
                                 sf::Vector2f viewPos = window.mapPixelToCoords(pixelPos);
                                 for (int i = 0; i < nameRects.size(); ++i) {
                                     if (nameRects[i].getGlobalBounds().contains(viewPos)) {
                                         if (nameRects[i].getFillColor() == sf::Color::White) {
-                                            // loop through all name rects and set fill color to white
+                                            // Loop through all name rects and set fill color to white
                                             for (int j = 0; j < nameRects.size(); j++) {
                                                 nameRects[j].setFillColor(sf::Color::White);
                                             }
@@ -373,10 +373,7 @@ int main() {
     return 0;
 }
 
-
-
-
-////////////////////////    Helper function definitions   /////////////////////////
+////////////////////////    Helper Function Definitions   /////////////////////////
 
 // Function to split a string into tokens based on a delimiter
 vector<string> split(const string& s, char delimiter) {
@@ -388,6 +385,7 @@ vector<string> split(const string& s, char delimiter) {
     }
     return tokens;
 }
+
 //  Centers text in the textbox
 void centerText(sf::Text& text, sf::RectangleShape& box) {
     sf::Vector2f boxPos = box.getPosition();
