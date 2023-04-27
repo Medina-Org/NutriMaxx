@@ -29,7 +29,6 @@ public:
 	steady_clock::time_point end;		//	Timer variable holding end time
 	string shellSortTime = "0";				//	String holding shell sorting time
 	string mergeSortTime = "0";				//	String holding mergeSorting time
-	vector<string> nutrientNames;		// Vector holding names of nutrients corresponding to the nutrient index
 
 	// Functions
 
@@ -47,7 +46,4 @@ public:
 	//	Timer Functions
 	void timeStart();	//	Starts timer
 	void timeStopAndDisplay(string sortType);	//	Ends timer and displays time
-
-	// Utility function for printing units for nutrient values
-	string getUnit(int nutrientIndex);
 };
