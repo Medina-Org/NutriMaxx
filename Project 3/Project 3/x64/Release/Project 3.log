@@ -1,43 +1,6 @@
-﻿  GUI.cpp
-C:\Users\Alen\Documents\GitHub\P3-v2\Project 3\Project 3\GUI.cpp(123,67): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\Alen\Documents\GitHub\P3-v2\Project 3\Project 3\GUI.cpp(123,50): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\Alen\Documents\GitHub\P3-v2\Project 3\Project 3\GUI.cpp(153,119): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\Alen\Documents\GitHub\P3-v2\Project 3\Project 3\GUI.cpp(153,102): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-  Generating code
-  40 of 454 functions ( 8.8%) were compiled, the rest were copied from previous compilation.
+﻿  Generating code
+  0 of 454 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    80 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Project 3.vcxproj -> C:\Users\Alen\Documents\GitHub\P3-v2\Project 3\x64\Release\Project 3.exe
+  Project 3.vcxproj -> C:\Users\rober\Documents\GitHub\P3-v2\Project 3\x64\Release\Project 3.exe
