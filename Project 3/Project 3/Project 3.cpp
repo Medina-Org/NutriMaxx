@@ -27,7 +27,7 @@ int main() {
     }
 
     // Create the SFML window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Window");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "FoodSearch");
 
     // Loading the font from a ttf file
     sf::Font font;
@@ -335,13 +335,13 @@ int main() {
                 // Merge sorts the nutrients
 				foodList.mergeSortFoodList(searchNutrientIndex);
                 //  Sets a string with the time merge sort ran for
-                shellTime.setString("Time:" + foodList.mergeSortTime);
+                shellTime.setString("Time:" + foodList.mergeSortTime + "s");
 			}
 			else {
                 //  Shell sorts the nutrients
                 foodList.shellSortFoodList(searchNutrientIndex);
                 //  Sets a string with the time shell sort ran for
-                mergeTime.setString("Time:" + foodList.shellSortTime);
+                mergeTime.setString("Time:" + foodList.shellSortTime + "s");
             }
 
 
