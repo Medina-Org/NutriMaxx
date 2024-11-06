@@ -1,6 +1,8 @@
-# Project-3 : FoodSearch
-COP3530 Project 3 R.M., J.M., A.Z.
-Group 62 : AmanTech
+# NutriMaxx
+
+This is forked from a previous project that was a class assignment.
+
+
 
 Features: Our program, FoodSearch, will provide users with easy access to a variety of
 recommended foods based on their desired nutritional content. Users should be able to search
